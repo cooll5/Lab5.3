@@ -1,0 +1,55 @@
+#include <iostream> 
+#include <cmath> 
+
+using namespace std;
+
+double z(const double x);
+
+int main() 
+{
+    double pp, pk, c;     //instead of "g" wrote "p"         
+    int n;                //instead of "z" wrote "c"
+
+    cout << "pp = "; cin >> pp;     
+    cout << "pk = "; cin >> pk;     
+    cout << "n  = "; cin >> n;
+
+    double dp = (pk - pp) / n;
+
+    double p = pp;
+
+    while (p <= pk) {
+        c = z(p * p + 1) - z(p * p - 1) + 2 * z(p);
+        cout << p << "  " << c << endl;        
+        p += dp; 
+    }
+    return 0;
+}
+long double fact(int N)
+{
+    if (N < 0)
+        return 0;
+    if (N == 0)
+        return 1;
+    else
+        return N * fact(N - 1);
+}
+double z(const double x)
+{ 
+    if (abs(x) >= 1)        
+return (sin(x) + 1) / (pow(cos(x), 2) + exp(x));
+else 
+ { 
+double S = 0;         
+int k = 0;         
+double a = 1/ exp(x*x);         
+S = a;
+do { 
+    k++;             
+    double R = (2*x)/ (fact(k)) ;             
+    a *= R;             
+    S += a; 
+} while (k < 6);         
+return S; 
+    } 
+}
